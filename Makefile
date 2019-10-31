@@ -1,31 +1,38 @@
 CXX = clang++-10
-OPTIMIZATION = -O3
+OPTIMIZATION = -O0
 CXXFLAGS = -std=c++17 -Wall -Wshadow -Wpedantic ${OPTIMIZATION}
-SAN= -fsanitize=memory
+ASAN = -fsanitize=address
+ASANOPTS = ASAN_OPTIONS=detect_leaks=1
+OPTS = ; ${ASANOPTS}
+
+APP=bin/
 
 DEADSTORE=DeadStoreRemoval
 STRINGVIEWUB=StringViewUB
 BADMAKERETURN=BadMakeReturn
 BADCOPYVECTOR=BadCopyOfAVector
 OPTIONAL=OptionalUB
+POINTER=PointerIsNotDeAllocated
 
 deadstore:
-	${CXX} ${DEADSTORE}.cpp -o ${DEADSTORE}.app ${CXXFLAGS}
+	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
 stringviewUB:
-	${CXX} ${STRINGVIEWUB}.cpp -o ${STRINGVIEWUB}.app ${CXXFLAGS}
+	${CXX} ${STRINGVIEWUB}.cpp -o ${APP}${STRINGVIEWUB}.app ${CXXFLAGS}
 badmakereturn:
-	${CXX} ${BADMAKERETURN}.cpp -o ${BADMAKERETURN}.app ${CXXFLAGS}
+	${CXX} ${BADMAKERETURN}.cpp -o ${APP}${BADMAKERETURN}.app ${CXXFLAGS}
 badcopyofacevtor:
-	${CXX} ${BADCOPYVECTOR}.cpp -o ${BADCOPYVECTOR}.app ${CXXFLAGS}
+	${CXX} ${BADCOPYVECTOR}.cpp -o ${APP}${BADCOPYVECTOR}.app ${CXXFLAGS}
 optional:
-	${CXX} ${OPTIONAL}.cpp -o ${OPTIONAL}.app ${CXXFLAGS} ${SAN}
+	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} ${ASAN} ${OPTS}
+pointer:
+	${CXX} ${POINTER}.cpp -o ${APP}${POINTER}.app ${CXXFLAGS} ${ASAN} ${OPTS}
 
 all:
-	deadstore
-	stringviewUB
-	badmakereturn
-	badcopyofacevtor
-	optional
+	make deadstore
+	make stringviewUB
+	make badmakereturn
+	make badcopyofacevtor
+	make optional
 
 clean:
-	rm *.app
+	rm ${APP}/*.app
