@@ -1,5 +1,5 @@
 CXX = clang++-10
-OPTIMIZATION = -O0
+OPTIMIZATION = -O3
 CXXFLAGS = -std=c++17 -Wall -Wshadow -Wpedantic ${OPTIMIZATION}
 ASAN = -fsanitize=address
 ASANOPTS = ASAN_OPTIONS=detect_leaks=1
@@ -13,11 +13,14 @@ BADMAKERETURN=BadMakeReturn
 BADCOPYVECTOR=BadCopyOfAVector
 OPTIONAL=OptionalUB
 POINTER=PointerIsNotDeAllocated
+STRINGVIEWUAF=StringViewUAF
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
 stringviewUB:
 	${CXX} ${STRINGVIEWUB}.cpp -o ${APP}${STRINGVIEWUB}.app ${CXXFLAGS}
+stringviewUAF:
+	${CXX} ${STRINGVIEWUAF}.cpp -o ${APP}${STRINGVIEWUAF}.app ${CXXFLAGS}	
 badmakereturn:
 	${CXX} ${BADMAKERETURN}.cpp -o ${APP}${BADMAKERETURN}.app ${CXXFLAGS}
 badcopyofacevtor:
@@ -33,6 +36,7 @@ all:
 	make badmakereturn
 	make badcopyofacevtor
 	make optional
+	make stringviewUAF
 
 clean:
 	rm ${APP}/*.app
