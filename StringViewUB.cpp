@@ -29,6 +29,11 @@ auto createUserNameFromID(const int id) { // misusing string_view
     return string_view(username); // username string is not exists anymore
 }
 
+auto createUserNameFromIDGood(const int id) {
+    string username = "user" + to_string(id);
+    return username;
+}
+
 int main() {
 
     auto data = createData(3);
@@ -40,6 +45,11 @@ int main() {
 
     auto val = createUserNameFromID(1);
     cout << val << endl;
+
+    auto user1 = createUserNameFromIDGood(1);
+    auto user2 = createUserNameFromIDGood(2);
+
+    cout << user1 << " " << user2 << endl;
 
     return EXIT_SUCCESS;
 }
