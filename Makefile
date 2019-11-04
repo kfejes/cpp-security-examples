@@ -20,6 +20,7 @@ NANARRAY=NaNArray
 NOEXCEPT=NoExcept
 ITERATOR=IteratorInvalidation
 ITERATORCOMP=IteratorComparison
+FORLOOPITERATION=ForLoopIterators
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -45,6 +46,8 @@ iteratorinvalidation:
 	${CXX} ${ITERATOR}.cpp -o ${APP}${ITERATOR}.app ${CXXFLAGS}
 iteratorcomparison:
 	${CXX} ${ITERATORCOMP}.cpp -o ${APP}${ITERATORCOMP}.app ${CXXFLAGS}
+forloopiterators:
+	${CXX} ${FORLOOPITERATION}.cpp -o ${APP}${FORLOOPITERATION}.app ${CXXFLAGS}
 
 all:
 	make deadstore
