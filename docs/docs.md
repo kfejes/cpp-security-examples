@@ -20,10 +20,21 @@ Mixing C and C++ features are frequently lead to serious issues. Like the exampl
 
 * Not a Number (NaN) value flaws
 
-Not a Number 
+Not a Number is a floating point value, which represents non-representable values for floating point elements, like missing data.
+In this example, a vector contains float point random numbers, and there is one which is missing, the value is NAN. This missing data will confuse the sorting algorithm, and the result will be an undefined behavior.
 
 * Noexcept
 
 The noexcept(true) specifier disables exception throwing for a function. If we throw an exception inside a noecept specified function, the std::terminate() will be called, which terminates the application.
 
 Possible solution is to specify noexcept(false), which means the function might throw an exception.
+
+* Ranged For Loop iterators failure - iteration invalidation
+
+Ranged for loop has to work with the iterators of the same container. In the example, there is a function, that construct and fill up a vector with constant data and returns it. The problem is, there is two different containers will create, so their iterators will be different too, however those containers have the same data. This leads to an undefined behavior problem.
+
+Solution:
+for (auto &i : getVect()) {
+    /*  ... */
+}
+
