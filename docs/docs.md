@@ -8,3 +8,12 @@ The only valid use of string_view is, where it points to an existing string. In 
 What if, we set this string static? Every string_view will point to the same string every time. 
 
 * copy a vector
+
+std::copy has a few different methods to use. The three arguments are: the first and the last element of the data from the source vector, and the destination vector's first iterator. In this example, we didn't reserve memory to destination vector to hold data, and this will lead to segmentation fault.
+
+There is two simple solutions:
+    * dest.reserve(countOfData) - right before start to copy the data, we can allocate memory to hold data in the destination vector.
+    * std::back_inserter() - a function template that constructs a back_inserter_iterator which call a push_back for the vector( and that will allocate memory for each copied data) 
+
+
+Mixing C and C++ features are frequently lead to serious issues. Like the example, there is an array what we want to copy to a vector. The issue is the same, like the previous example, there is no allocated memory for data. The back_inserter will solve the problem.
