@@ -17,3 +17,13 @@ There is two simple solutions:
 
 
 Mixing C and C++ features are frequently lead to serious issues. Like the example, there is an array what we want to copy to a vector. The issue is the same, like the previous example, there is no allocated memory for data. The back_inserter will solve the problem.
+
+* Not a Number (NaN) value flaws
+
+Not a Number 
+
+* Noexcept
+
+The noexcept(true) specifier disables exception throwing for a function. If we throw an exception inside a noecept specified function, the std::terminate() will be called, which terminates the application.
+
+Possible solution is to specify noexcept(false), which means the function might throw an exception.
