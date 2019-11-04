@@ -1,5 +1,5 @@
 CXX = clang++-10
-OPTIMIZATION = -O3
+OPTIMIZATION = -O0
 CXXFLAGS = -std=c++17 -Wall -Wshadow -Wpedantic ${OPTIMIZATION}
 ASAN = -fsanitize=address
 UBSAN = -fsanitize=address
@@ -15,6 +15,8 @@ BADCOPYVECTOR=BadCopyOfAVector
 OPTIONAL=OptionalUB
 POINTER=PointerIsNotDeAllocated
 STRINGVIEWUAF=StringViewUAF
+NANINDEX=NaNIndex
+NANARRAY=NaNArray
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -30,6 +32,10 @@ optional:
 	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} ${UBSAN} ${ASAN} ${OPTS}
 pointer:
 	${CXX} ${POINTER}.cpp -o ${APP}${POINTER}.app ${CXXFLAGS} ${ASAN} ${OPTS}
+nanindex:
+	${CXX} ${NANINDEX}.cpp -o ${APP}${NANINDEX}.app ${CXXFLAGS}
+nanarray:
+	${CXX} ${NANARRAY}.cpp -o ${APP}${NANARRAY}.app ${CXXFLAGS}
 
 all:
 	make deadstore
@@ -39,6 +45,8 @@ all:
 	make optional
 	make stringviewUAF
 	make pointer
-
+	make nanindex
+	make nanarray
+	
 clean:
 	rm ${APP}/*.app
