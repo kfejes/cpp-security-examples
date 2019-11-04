@@ -18,6 +18,8 @@ STRINGVIEWUAF=StringViewUAF
 NANINDEX=NaNIndex
 NANARRAY=NaNArray
 NOEXCEPT=NoExcept
+ITERATOR=IteratorInvalidation
+ITERATORCOMP=IteratorComparison
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -39,6 +41,10 @@ nanarray:
 	${CXX} ${NANARRAY}.cpp -o ${APP}${NANARRAY}.app ${CXXFLAGS}
 noexcept:
 	${CXX} ${NOEXCEPT}.cpp -o ${APP}${NOEXCEPT}.app ${CXXFLAGS}
+iteratorinvalidation:
+	${CXX} ${ITERATOR}.cpp -o ${APP}${ITERATOR}.app ${CXXFLAGS}
+iteratorcomparison:
+	${CXX} ${ITERATORCOMP}.cpp -o ${APP}${ITERATORCOMP}.app ${CXXFLAGS}
 
 all:
 	make deadstore
@@ -50,6 +56,7 @@ all:
 	make pointer
 	make nanindex
 	make nanarray
+	make iteratorcomparison
 
 clean:
 	rm ${APP}/*.app
