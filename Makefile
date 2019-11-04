@@ -17,6 +17,7 @@ POINTER=PointerIsNotDeAllocated
 STRINGVIEWUAF=StringViewUAF
 NANINDEX=NaNIndex
 NANARRAY=NaNArray
+NOEXCEPT=NoExcept
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -36,6 +37,8 @@ nanindex:
 	${CXX} ${NANINDEX}.cpp -o ${APP}${NANINDEX}.app ${CXXFLAGS}
 nanarray:
 	${CXX} ${NANARRAY}.cpp -o ${APP}${NANARRAY}.app ${CXXFLAGS}
+noexcept:
+	${CXX} ${NOEXCEPT}.cpp -o ${APP}${NOEXCEPT}.app ${CXXFLAGS}
 
 all:
 	make deadstore
@@ -47,6 +50,6 @@ all:
 	make pointer
 	make nanindex
 	make nanarray
-	
+
 clean:
 	rm ${APP}/*.app
