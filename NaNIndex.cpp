@@ -28,9 +28,7 @@ auto NanIndex() {
 
 int main() {
 
-    //auto data = NanIndex();
-
-    NanTest();
+    auto data = NanIndex();
 
     return EXIT_SUCCESS;
 }
