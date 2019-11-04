@@ -38,3 +38,11 @@ for (auto &i : getVect()) {
     /*  ... */
 }
 
+
+* Move references
+
+Move semantics is a fundamental feature of the Modern C++. We can move objects simple, without creating unnecessary copies. When we try to use an object after move, nothing will happen. Lets say, we would like to move the value of string A to string B, and after the move, we would like to print out value of string A, nothing will print, because string A doesn't contain the string itself anymore.
+Moving pointers is another thing. If we move the pointer of the string A to string B, and we would like to print out the value of string A, this will be a segmentation fault, because there is no data to point to.
+
+The example we create a unique_ptr from a string which contains "testMessage" string, and we move it to another unique_ptr. From this, only the second unique_ptr will hold the string, and if we would like to use the first one, segmentation fault will occurred.
+
