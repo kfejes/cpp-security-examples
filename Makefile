@@ -21,6 +21,7 @@ NOEXCEPT=NoExcept
 ITERATOR=IteratorInvalidation
 ITERATORCOMP=IteratorComparison
 FORLOOPITERATION=ForLoopIterators
+EXPLICITCAST=ExplicitCast
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -48,6 +49,8 @@ iteratorcomparison:
 	${CXX} ${ITERATORCOMP}.cpp -o ${APP}${ITERATORCOMP}.app ${CXXFLAGS}
 forloopiterators:
 	${CXX} ${FORLOOPITERATION}.cpp -o ${APP}${FORLOOPITERATION}.app ${CXXFLAGS}
+explicitcast:
+	${CXX} ${EXPLICITCAST}.cpp -o ${APP}${EXPLICITCAST}.app ${CXXFLAGS}	
 
 all:
 	make deadstore
