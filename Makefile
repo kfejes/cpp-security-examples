@@ -8,20 +8,22 @@ OPTS = ; ${ASANOPTS}
 
 APP=bin/
 
-DEADSTORE=DeadStoreRemoval
-STRINGVIEWUB=StringViewUB
-BADMAKERETURN=BadMakeReturn
-BADCOPYVECTOR=BadCopyOfAVector
-OPTIONAL=OptionalUB
-POINTER=PointerIsNotDeAllocated
-STRINGVIEWUAF=StringViewUAF
-NANINDEX=NaNIndex
-NANARRAY=NaNArray
-NOEXCEPT=NoExcept
-ITERATOR=IteratorInvalidation
-ITERATORCOMP=IteratorComparison
-FORLOOPITERATION=ForLoopIterators
-EXPLICITCAST=ExplicitCast
+DEADSTORE = DeadStoreRemoval
+STRINGVIEWUB = StringViewUB
+BADMAKERETURN = BadMakeReturn
+BADCOPYVECTOR = BadCopyOfAVector
+OPTIONAL = OptionalUB
+POINTER = PointerIsNotDeAllocated
+STRINGVIEWUAF = StringViewUAF
+NANINDEX = NaNIndex
+NANARRAY = NaNArray
+NOEXCEPT = NoExcept
+ITERATOR = IteratorInvalidation
+ITERATORCOMP = IteratorComparison
+FORLOOPITERATION = ForLoopIterators
+EXPLICITCAST = ExplicitCast
+ENUMCASTING = CastingToEnums
+NANBRANCH = NaNBranch
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -51,7 +53,11 @@ forloopiterators:
 	${CXX} ${FORLOOPITERATION}.cpp -o ${APP}${FORLOOPITERATION}.app ${CXXFLAGS}
 explicitcast:
 	${CXX} ${EXPLICITCAST}.cpp -o ${APP}${EXPLICITCAST}.app ${CXXFLAGS}	
-
+castingtotenums:
+	${CXX} ${ENUMCASTING}.cpp -o ${APP}${ENUMCASTING}.app ${CXXFLAGS}
+nanbranch:
+	${CXX} ${NANBRANCH}.cpp -o ${APP}${NANBRANCH}.app ${CXXFLAGS}	
+	
 all:
 	make deadstore
 	make stringviewUB
@@ -63,6 +69,7 @@ all:
 	make nanindex
 	make nanarray
 	make iteratorcomparison
+	make castingtotenums
 
 clean:
 	rm ${APP}/*.app
