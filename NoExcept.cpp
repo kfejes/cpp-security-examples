@@ -1,35 +1,46 @@
 #include <iostream>
+#include <vector>
+#include <random>
 
 using namespace std;
 
-float sliceBy(int value) noexcept(true) {
-    float cake = 1.0;
+random_device dev;
 
-    if (value == 0) {
-        throw "Division by zero";
-    } else {
-        return (cake / value);
-    }
-}
+class DataHolder {
+    private:
+        vector<int> data;
+        auto generateRandom(int from, int to) {    
+            mt19937 rng(dev());
+            uniform_int_distribution<mt19937::result_type> dist6(from, to); 
 
-// int NoExceptFunction() noexcept(true) {
-//     if (true) {
-//         throw "Error, calling terminate()";
-//     }
+            return dist6(rng);
+        }
 
-//     return 0;
-// }
+        void fillUp(int count) {
+            this->data.reserve(count);
+
+            for (int i = 0; i < count; ++i) {
+                data.emplace_back(generateRandom(1, 100));
+            }
+        }
+
+    public:
+        DataHolder(int countOfData) {
+            fillUp(countOfData);
+        }
+        ~DataHolder() = default;
+
+        auto getValue(int place) noexcept {
+            return this->data.at(place);
+        }
+};
 
 int main() {
 
-    cout << "Example starting ... " << endl; 
+    DataHolder dh(100);
 
-    try{
-        cout << sliceBy(4) << endl;
-        cout << sliceBy(0) << endl;
-    } catch ( ... ) {
-        cout << " Exception catched" << endl;
-    }
+    cout << dh.getValue(42) << endl;
+    cout << dh.getValue(666) << endl; // out of boundary, this will throw and exception
 
     return EXIT_SUCCESS;
 }
