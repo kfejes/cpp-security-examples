@@ -35,8 +35,24 @@ class DataHolder {
         }
 };
 
+float divideBy(int value, int divider) noexcept {    
+    
+    if (divider == 0) {
+        return INFINITY;
+    }
+
+    return  value / divider;
+}
+
 int main() {
 
+    try {
+        cout << divideBy(24, 8) << endl; // this should be 3 
+        cout << divideBy(4, 0) << endl;
+    } catch ( ... ) {
+        cout << "Exception caught..." << endl;
+    }
+    
     DataHolder dh(100);
 
     cout << dh.getValue(42) << endl;
