@@ -46,3 +46,12 @@ Moving pointers is another thing. If we move the pointer of the string A to stri
 
 The example we create a unique_ptr from a string which contains "testMessage" string, and we move it to another unique_ptr. From this, only the second unique_ptr will hold the string, and if we would like to use the first one, segmentation fault will occurred.
 
+*  Iterator invalidations
+
+Iterator invalidatation happens, when inside a for loop, the container size related parameters change (insertion, erasure, shrink to fit), and the iterators are not point to valid values anymore. This leads to an undefined behavior.
+
+Solution: Don't do this. Just don't. Use the normal for loop instead.
+
+* Integer casting to Enum
+
+* Explicit casting
