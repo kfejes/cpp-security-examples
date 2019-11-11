@@ -33,7 +33,7 @@ stringviewUAF:
 	${CXX} ${STRINGVIEWUAF}.cpp -o ${APP}${STRINGVIEWUAF}.app ${CXXFLAGS}	
 badmakereturn:
 	${CXX} ${BADMAKERETURN}.cpp -o ${APP}${BADMAKERETURN}.app ${CXXFLAGS}
-badcopyofacevtor:
+badcopyofavector:
 	${CXX} ${BADCOPYVECTOR}.cpp -o ${APP}${BADCOPYVECTOR}.app ${CXXFLAGS}
 optional:
 	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} ${UBSAN} ${ASAN} ${OPTS}
@@ -62,7 +62,7 @@ all:
 	make deadstore
 	make stringviewUB
 	make badmakereturn
-	make badcopyofacevtor
+	make badcopyofavector
 	make optional
 	make stringviewUAF
 	make pointer

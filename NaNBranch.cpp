@@ -3,7 +3,7 @@
 
 using namespace  std;
 
-auto IsGreaterThan(float value) {
+bool IsGreaterThan(float value) {
 
     if (value >= 10.0) {
         cout << "Branch True" << endl;
@@ -12,7 +12,7 @@ auto IsGreaterThan(float value) {
         cout << "Branch False" << endl;
         return false;        
     } else {
-        cout << "What Else?" << endl;
+        cout << "What Else?" << endl; // is there any valid return value?
     } 
 }
 
