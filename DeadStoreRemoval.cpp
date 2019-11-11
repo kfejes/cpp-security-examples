@@ -29,9 +29,7 @@ auto getSecuredData() {
 }
 
 int main() {
-
     cout << getSecuredData() << endl;
-
 
     return EXIT_FAILURE;
 }

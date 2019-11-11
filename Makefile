@@ -21,6 +21,7 @@ NOEXCEPT=NoExcept
 ITERATOR=IteratorInvalidation
 ITERATORCOMP=IteratorComparison
 FORLOOPITERATION=ForLoopIterators
+NORETURN=NoReturnEx
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -48,7 +49,8 @@ iteratorcomparison:
 	${CXX} ${ITERATORCOMP}.cpp -o ${APP}${ITERATORCOMP}.app ${CXXFLAGS}
 forloopiterators:
 	${CXX} ${FORLOOPITERATION}.cpp -o ${APP}${FORLOOPITERATION}.app ${CXXFLAGS}
-
+noreturn:
+	${CXX} ${NORETURN}.cpp -o ${APP}${NORETURN}.app ${CXXFLAGS}
 all:
 	make deadstore
 	make stringviewUB
