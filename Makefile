@@ -21,11 +21,8 @@ NOEXCEPT=NoExcept
 ITERATOR=IteratorInvalidation
 ITERATORCOMP=IteratorComparison
 FORLOOPITERATION=ForLoopIterators
-<<<<<<< HEAD
 NORETURN=NoReturnEx
-=======
 EXPLICITCAST=ExplicitCast
->>>>>>> 202605c93ca9f331eec2e360ea6889b627a883ad
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
