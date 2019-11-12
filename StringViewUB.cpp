@@ -1,11 +1,10 @@
 #include <iostream>
 #include <string>
-#include <experimental/string_view>
+#include <string_view>
 #include <chrono>
 #include <vector>
 
 using namespace std;
-using namespace experimental;
 
 auto createData(const int count) {
     vector<string> data;
