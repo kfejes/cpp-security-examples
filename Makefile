@@ -25,6 +25,7 @@ NORETURN=NoReturnEx
 EXPLICITCAST=ExplicitCast
 ENUMCASTING = CastingToEnums
 NANBRANCH = NaNBranch
+AUTO = AutoHideBounds
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -37,7 +38,8 @@ badmakereturn:
 badcopyofavector:
 	${CXX} ${BADCOPYVECTOR}.cpp -o ${APP}${BADCOPYVECTOR}.app ${CXXFLAGS}
 optional:
-	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} ${UBSAN} ${ASAN} ${OPTS}
+	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} 
+	#${UBSAN} ${ASAN} ${OPTS}
 pointer:
 	${CXX} ${POINTER}.cpp -o ${APP}${POINTER}.app ${CXXFLAGS} ${ASAN} ${OPTS}
 nanindex:
@@ -59,7 +61,9 @@ explicitcast:
 castingtotenums:
 	${CXX} ${ENUMCASTING}.cpp -o ${APP}${ENUMCASTING}.app ${CXXFLAGS}
 nanbranch:
-	${CXX} ${NANBRANCH}.cpp -o ${APP}${NANBRANCH}.app ${CXXFLAGS}	
+	${CXX} ${NANBRANCH}.cpp -o ${APP}${NANBRANCH}.app ${CXXFLAGS}
+autohidebounds:
+	${CXX} ${AUTO}.cpp -o ${APP}${AUTO}.app ${CXXFLAGS}	
 	
 all:
 	make deadstore
