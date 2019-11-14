@@ -2,40 +2,110 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <chrono>
+
+#include <chrono>  // chrono::system_clock
+#include <ctime>   // localtime
+#include <sstream> // stringstream
+#include <iomanip> // put_time
+#include <string>  // string
+
+
 
 using namespace std;
 
+class LogEntry {
+    private:
+        string user;
+        string logDate;
 
-auto remove(map<string, int> data, string user) {
-    for (auto i : data) {
+    std::string loggingDate()
+    {
+        auto now = std::chrono::system_clock::now();
+        auto in_time_t = std::chrono::system_clock::to_time_t(now);
 
-        if (i.first == user) {
-            data.erase(i.first);
+        std::stringstream ss;
+        ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X");
+        return ss.str();
+    }
+        
+    public:
+        LogEntry(string name) {
+            this->user = name;
+            this->logDate = loggingDate();
         }
-        cout << i.first << endl;
-    }
-    return data;
-}
+        ~LogEntry() = default;
+        auto getEntry() {
+            string entry = this->user + " logged at " + this->logDate;
+            return entry;
+        }
+        bool operator==(string name) {
+            if (this->user == name) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+};
 
-void check(map<string, int> data) {
-    for (auto i : data) {
-        cout << i.first << endl;
-    }
-}
+class LoggingManager {
+    private:
+        vector<LogEntry> logs;
+    public:
+        LoggingManager() = default;
+        ~LoggingManager() = default;
+        void log(string user) {
+            if (user != "") {
+                this->logs.emplace_back(LogEntry(user));
+            } else {
+                throw "Invalid Parameter!";
+            }
+        }
+
+        void printLogs() {
+            int index = 1;
+            for (auto i : this->logs) {
+                cout << index << ". "<< i.getEntry() << endl;
+                ++index;
+            }
+        }
+
+        void RemoveUser(string user) {
+            auto i = this->logs.begin();
+            for (auto entry : this->logs) {
+                if (entry == user) {
+                    this->logs.erase(i);
+                }
+                ++i;
+                cout << entry.getEntry() << endl;
+            }
+        }
+ };
+
+
 
 int main() {
 
-    map<string, int> dataHolder;
-
+    LoggingManager lm;
     for (int i = 0; i < 10; ++i) {
-        string user = "User:" + to_string(i);
-        dataHolder.insert({user, i});
-    }
-    
-    dataHolder = remove(dataHolder, "User:5");
-    dataHolder = remove(dataHolder, "User:6");
-    check(dataHolder);
+        if (i % 4) {
+            lm.log("user1");
+        } 
+        if (i % 3) {
+            lm.log("user3");
+        } 
 
+        if (i % 5) {
+            lm.log("user2");
+        } 
+    } 
+
+
+    lm.RemoveUser("user2");
+    cout << " *** Print logs *** " << endl;
+    lm.printLogs();
+
+    //lm.printLogs();
 
 }
 
