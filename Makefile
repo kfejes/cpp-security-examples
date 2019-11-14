@@ -26,6 +26,7 @@ EXPLICITCAST=ExplicitCast
 ENUMCASTING = CastingToEnums
 NANBRANCH = NaNBranch
 AUTO = AutoHideBounds
+FORLOOPITER2=ForLoopIter2
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -63,7 +64,9 @@ castingtotenums:
 nanbranch:
 	${CXX} ${NANBRANCH}.cpp -o ${APP}${NANBRANCH}.app ${CXXFLAGS}
 autohidebounds:
-	${CXX} ${AUTO}.cpp -o ${APP}${AUTO}.app ${CXXFLAGS}	
+	${CXX} ${AUTO}.cpp -o ${APP}${AUTO}.app ${CXXFLAGS}
+forloopiter2:
+	${CXX} ${FORLOOPITER2}.cpp -o ${APP}${FORLOOPITER2}.app ${CXXFLAGS}
 	
 all:
 	make deadstore
@@ -79,4 +82,4 @@ all:
 	make castingtotenums
 
 clean:
-	rm ${APP}/*.app
+	rm ${APP}*.app
