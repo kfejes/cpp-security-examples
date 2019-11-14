@@ -80,32 +80,41 @@ class LoggingManager {
                 cout << entry.getEntry() << endl;
             }
         }
+
+        void RemoveUserSafely(string user) {
+            auto count = this->logs.end();
+            for (auto i = this->logs.begin(); i < count; ++i) {
+                if ( *i == user) {
+                    this->logs.erase(i);
+                    count = this->logs.end();
+                }
+            cout << i->getEntry() << endl; 
+            } 
+        }
  };
-
-
 
 int main() {
 
     LoggingManager lm;
     for (int i = 0; i < 10; ++i) {
-        if (i % 4) {
+        if (i % 4 == 0) {
             lm.log("user1");
         } 
-        if (i % 3) {
+
+        if (i % 5 == 0) {        
+            lm.log("user2");
+        } 
+
+        if (i % 3 == 0) {
             lm.log("user3");
         } 
 
-        if (i % 5) {
-            lm.log("user2");
-        } 
     } 
 
-
     lm.RemoveUser("user2");
+    lm.RemoveUserSafely("user2");
     cout << " *** Print logs *** " << endl;
     lm.printLogs();
-
-    //lm.printLogs();
 
 }
 
