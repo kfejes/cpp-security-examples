@@ -27,6 +27,7 @@ ENUMCASTING = CastingToEnums
 NANBRANCH = NaNBranch
 AUTO = AutoHideBounds
 FORLOOPITER2=ForLoopIter2
+UNIQUEPTRDFREE=UniquePtrDFree
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -39,8 +40,7 @@ badmakereturn:
 badcopyofavector:
 	${CXX} ${BADCOPYVECTOR}.cpp -o ${APP}${BADCOPYVECTOR}.app ${CXXFLAGS}
 optional:
-	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} 
-	#${UBSAN} ${ASAN} ${OPTS}
+	${CXX} ${OPTIONAL}.cpp -o ${APP}${OPTIONAL}.app ${CXXFLAGS} ${UBSAN} ${ASAN} ${OPTS}
 pointer:
 	${CXX} ${POINTER}.cpp -o ${APP}${POINTER}.app ${CXXFLAGS} ${ASAN} ${OPTS}
 nanindex:
@@ -67,7 +67,9 @@ autohidebounds:
 	${CXX} ${AUTO}.cpp -o ${APP}${AUTO}.app ${CXXFLAGS}
 forloopiter2:
 	${CXX} ${FORLOOPITER2}.cpp -o ${APP}${FORLOOPITER2}.app ${CXXFLAGS}
-	
+uniqueptr:
+	${CXX} ${UNIQUEPTRDFREE}.cpp -o ${APP}${UNIQUEPTRDFREE}.app ${CXXFLAGS}
+
 all:
 	make deadstore
 	make stringviewUB
@@ -80,6 +82,10 @@ all:
 	make nanarray
 	make iteratorcomparison
 	make castingtotenums
+	make nanbranch
+	make forloopiter2
+	make autohidebounds
+	make uniqueptr
 
 clean:
 	rm ${APP}*.app
