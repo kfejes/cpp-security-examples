@@ -18,6 +18,20 @@ int returnOptional() {
     return *x;
 }
 
+
+/* a good working example for demonstrating reasons */
+void goodExample() {
+    auto value = make_optional<string>("This is an optional string");
+    if (value.has_value()) {
+       cout << value.value() << endl;
+    } else {
+        cout << "No value" << endl;
+    }
+
+    optional<int> anotherValue = 42;
+    cout << anotherValue.value() << endl;
+}
+
 class User {
     private:
         string userName;
@@ -98,8 +112,6 @@ int main() {
     }
 
     cout << found() << endl;
-
-    //cout << notFound() << endl;
 
     // auto value = returnOptional();
     // cout << value << endl;
