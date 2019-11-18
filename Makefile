@@ -28,6 +28,7 @@ NANBRANCH = NaNBranch
 AUTO = AutoHideBounds
 FORLOOPITER2=ForLoopIter2
 UNIQUEPTRDFREE=UniquePtrDFree
+LAMBDA=Lambda
 
 deadstore:
 	${CXX} ${DEADSTORE}.cpp -o ${APP}${DEADSTORE}.app ${CXXFLAGS}
@@ -69,6 +70,9 @@ forloopiter2:
 	${CXX} ${FORLOOPITER2}.cpp -o ${APP}${FORLOOPITER2}.app ${CXXFLAGS}
 uniqueptr:
 	${CXX} ${UNIQUEPTRDFREE}.cpp -o ${APP}${UNIQUEPTRDFREE}.app ${CXXFLAGS}
+lambda:
+	${CXX} ${LAMBDA}.cpp -o ${APP}${LAMBDA}.app ${CXXFLAGS} 
+	#${UBSAN} ${ASAN} ${OPTS}
 
 all:
 	make deadstore
